@@ -116,6 +116,10 @@ func (t *ReadLeaseTest) Revoke() {
 	_, err = rl.ReadAt(buf, 1)
 
 	ExpectThat(err, HasSameTypeAs(&lease.RevokedError{}))
+
+	// TODO(jacobsa): Verify that the file was closed! Maybe read directly
+	// through it and see if we get EINVAL?
+	AssertTrue(false, "TODO")
 }
 
 func (t *ReadLeaseTest) Upgrade() {
